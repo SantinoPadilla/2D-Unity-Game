@@ -8,9 +8,7 @@ public class CameraAutoScroll : MonoBehaviour
 
     public Transform player;
 
-    public float minY = -2f;               // Límite mínimo vertical
-    public float maxY = 5f;                // Límite máximo vertical
-    
+     
 
     void Start()
     {
