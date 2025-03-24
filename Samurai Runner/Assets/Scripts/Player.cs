@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     public Camera mainCamera;
     private float camSpeed;
-    private bool pegadoAPared = false;
+    public bool pegadoAPared = false;
 
     void Start()
     {
