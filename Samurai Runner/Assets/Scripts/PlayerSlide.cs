@@ -13,6 +13,7 @@ public class PlayerSlide : MonoBehaviour
     [SerializeField] private float slideScaleY = 0.5f;
     [SerializeField] private Color slideColor = Color.red;
 
+
     void Start()
     {
         player = GetComponent<Player>();
@@ -38,13 +39,16 @@ public class PlayerSlide : MonoBehaviour
             boxCollider.offset = new Vector2(originalColliderOffset.x, -(originalColliderSize.y - slideScaleY) / 2);
             spriteRenderer.color = slideColor;
         }
+        
         else // Cuando se deja de presionar abajo
         {
-            player.canJump = true;
+         
             boxCollider.size = originalColliderSize;
             boxCollider.offset = originalColliderOffset;
             spriteRenderer.color = originalColor;
+             
         }
+     
     }
 }
 
