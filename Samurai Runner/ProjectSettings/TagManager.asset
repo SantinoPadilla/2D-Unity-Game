@@ -8,6 +8,8 @@ TagManager:
   - BounceW
   - Roof
   - Techo
+  - Spike
+  - Pinche
   layers:
   - Default
   - TransparentFX
