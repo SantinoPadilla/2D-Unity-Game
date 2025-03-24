@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerMovement: MonoBehaviour
 {
     public float velocidadBase = 5f;
     public float incrementoVelocidad = 2f;

@@ -8,7 +8,7 @@ public class PlayerSlide : MonoBehaviour
     private Vector2 originalColliderOffset;
     private Color originalColor;
 
-    private Player player;
+    private PlayerMovement player;
 
     [SerializeField] private float slideScaleY = 0.5f;
     [SerializeField] private Color slideColor = Color.red;
@@ -16,7 +16,7 @@ public class PlayerSlide : MonoBehaviour
 
     void Start()
     {
-        player = GetComponent<Player>();
+        player = GetComponent<PlayerMovement>();
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 

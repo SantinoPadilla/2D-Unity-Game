@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GrapplingHook : MonoBehaviour
 {
-    public Player player;  // Si necesitas acceso a los datos del jugador
+    public PlayerMovement player;  // Si necesitas acceso a los datos del jugador
     public float hookSpeed = 15f;
     public float swingForce = 10f;
     public float maxGrappleDistance = 10f;
