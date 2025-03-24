@@ -140,6 +140,13 @@ public class PlayerMovement: MonoBehaviour
         nuevaPosicion.x += camSpeed * Time.deltaTime;
         mainCamera.transform.position = nuevaPosicion;
     }
+
+    // Función para saber si el jugador está mirando a la derecha (para el shuriken)
+    public bool IsFacingRight()
+    {
+        return direccion == 1; // Si la dirección es 1, significa que está mirando a la derecha
+    }
+
 }
 
 
