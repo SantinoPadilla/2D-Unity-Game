@@ -5,7 +5,7 @@ public class PlayerShuriken : MonoBehaviour
     public GameObject shurikenPrefab;  // Prefab del shuriken
     public float throwForce = 10f;     // Fuerza del lanzamiento
     public Transform launchPoint;      // Punto de lanzamiento
-    public float lifetime = 5f;        // Tiempo de vida del shuriken
+    
 
     private PlayerMovement playerMovement;
 
@@ -37,8 +37,8 @@ public class PlayerShuriken : MonoBehaviour
         // Lanzar el shuriken en la dirección correcta
         rb.linearVelocity = new Vector2(direction * throwForce, 0); // Lanzamiento horizontal
 
-        // Destruir el shuriken después de 'lifetime' segundos
-        Destroy(shuriken, lifetime);
+       
+       
     }
 }
 

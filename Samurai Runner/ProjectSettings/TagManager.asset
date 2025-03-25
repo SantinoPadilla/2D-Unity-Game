@@ -10,6 +10,7 @@ TagManager:
   - Techo
   - Spike
   - Pinche
+  - Enemy
   layers:
   - Default
   - TransparentFX
