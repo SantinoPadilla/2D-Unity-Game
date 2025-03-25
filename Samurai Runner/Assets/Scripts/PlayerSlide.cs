@@ -8,15 +8,17 @@ public class PlayerSlide : MonoBehaviour
     private Vector2 originalColliderOffset;
     private Color originalColor;
 
-    private PlayerMovement player;
+    private PlayerMovement playerMovement;
 
     [SerializeField] private float slideScaleY = 0.5f;
     [SerializeField] private Color slideColor = Color.red;
+    [SerializeField] private float slideDuration = 0.5f;
 
+    private bool isSliding = false;
 
     void Start()
     {
-        player = GetComponent<PlayerMovement>();
+        playerMovement = GetComponent<PlayerMovement>(); // Asegúrate de referenciar el script de movimiento
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -32,23 +34,30 @@ public class PlayerSlide : MonoBehaviour
 
     void HandleSlide()
     {
-        if (Input.GetAxisRaw("Vertical") < 0) // Cuando se presiona abajo
+        if (Input.GetAxisRaw("Vertical") < 0 && !isSliding) // Inicia el slide si no está deslizando
         {
-            player.canJump = false;  
-            boxCollider.size = new Vector2(originalColliderSize.x, slideScaleY);
-            boxCollider.offset = new Vector2(originalColliderOffset.x, -(originalColliderSize.y - slideScaleY) / 2);
-            spriteRenderer.color = slideColor;
+            isSliding = true;
+            playerMovement.canJump = false;  // Desactiva el salto mientras se desliza
+            StartCoroutine(SlideCoroutine());
         }
-        
-        else // Cuando se deja de presionar abajo
-        {
-         
-            boxCollider.size = originalColliderSize;
-            boxCollider.offset = originalColliderOffset;
-            spriteRenderer.color = originalColor;
-             
-        }
-     
+    }
+
+    private System.Collections.IEnumerator SlideCoroutine()
+    {
+        // Configuración del slide
+        boxCollider.size = new Vector2(originalColliderSize.x, slideScaleY);
+        boxCollider.offset = new Vector2(originalColliderOffset.x, -(originalColliderSize.y - slideScaleY) / 2);
+        spriteRenderer.color = slideColor;
+
+        yield return new WaitForSeconds(slideDuration);
+
+        // Restauración tras el slide
+        boxCollider.size = originalColliderSize;
+        boxCollider.offset = originalColliderOffset;
+        spriteRenderer.color = originalColor;
+
+        playerMovement.canJump = true;  // Restablece la capacidad de salto después del deslizamiento
+        isSliding = false;
     }
 }
 
