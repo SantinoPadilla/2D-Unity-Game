@@ -10,6 +10,8 @@ TagManager:
   - Techo
   - Spike
   - Pinche
+  - Enemy
+  - Shuriken
   layers:
   - Default
   - TransparentFX
