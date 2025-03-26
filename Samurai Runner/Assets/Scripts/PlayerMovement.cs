@@ -5,24 +5,30 @@ public class PlayerMovement: MonoBehaviour
 {
     public float velocidadBase = 5f;
     public float incrementoVelocidad = 2f;
-    private Rigidbody2D rb;
     public float velocidadActual;
     public float jumpForce = 10f;
     public bool canJump = true;
     public bool canBounce = false;
     private int direccion = 1; // 1 = derecha, -1 = izquierda
     private bool teclasRotadas = false;
-
-    public Camera mainCamera;
     private float camSpeed;
     public bool pegadoAPared = false;
+    public bool attacking;
 
+
+    public Animator animator;
+    private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+    public Camera mainCamera;
+   
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         velocidadActual = velocidadBase;
         camSpeed = velocidadBase;
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (mainCamera == null)
         {
@@ -32,58 +38,85 @@ public class PlayerMovement: MonoBehaviour
 
     void Update()
     {
-        MovimientoPlayer();
-        Jump();
-        MoverCamara();
+        float inputHorizontal = Input.GetAxis("Horizontal") * Time.deltaTime;
+
+
+        animator.SetFloat("Movement", inputHorizontal * velocidadActual);
+        animator.SetBool("Attacking", attacking);
     }
 
-    void FixedUpdate()
-    {
-        if (!pegadoAPared)
-        {
-            rb.linearVelocity = new Vector2(velocidadActual * direccion, rb.linearVelocity.y);
-        }
-        else if (rb.linearVelocity.y < 0 && !canJump) // Si está pegado a la pared y cayendo, reducir la caída
-        {
-            rb.linearVelocity = new Vector2(0, -2f); // Controlar la velocidad de caída al estar pegado
-        }
-    }
 
-    void MovimientoPlayer()
-    {
-        float inputHorizontal = Input.GetAxis("Horizontal");
+        void FixedUpdate()
+        {
+            OnWall();
+            MovimientoPlayer();
+            Jump();
+            OnWall();
+            MoverCamara();
 
-        if (!teclasRotadas)  // Movimiento normal
-        {
-            if (inputHorizontal < 0) // Tecla A (Desacelera)
+            float inputHorizontal = Input.GetAxis("Horizontal") * Time.deltaTime;
+            animator.SetFloat("Movement", inputHorizontal * velocidadActual);
+            animator.SetBool("Attacking", attacking);
+
+            if (Input.GetKeyDown(KeyCode.Mouse0) && !attacking)
             {
-                velocidadActual = Mathf.Max(1f, velocidadBase - incrementoVelocidad);
-            }
-            else if (inputHorizontal > 0) // Tecla D (Acelera)
-            {
-                velocidadActual = velocidadBase + incrementoVelocidad;
-            }
-            else
-            {
-                velocidadActual = velocidadBase;
+                Attack();
             }
         }
-        else  // Movimiento invertido
+        void MovimientoPlayer()
         {
-            if (inputHorizontal < 0) // Tecla A (Acelera ahora)
+            float inputHorizontal = Input.GetAxis("Horizontal");
+
+            if (!teclasRotadas)  // Movimiento normal
             {
-                velocidadActual = velocidadBase + incrementoVelocidad;
+                if (inputHorizontal < 0) // Tecla A (Desacelera)
+                {
+
+                    velocidadActual = Mathf.Max(1f, velocidadBase - incrementoVelocidad);
+                }
+                else if (inputHorizontal > 0) // Tecla D (Acelera)
+                {
+                    spriteRenderer.flipX = false;
+                    velocidadActual = velocidadBase + incrementoVelocidad;
+                }
+                else
+                {
+                    velocidadActual = velocidadBase;
+                }
             }
-            else if (inputHorizontal > 0) // Tecla D (Desacelera ahora)
+            else  // Movimiento invertido
             {
-                velocidadActual = Mathf.Max(1f, velocidadBase - incrementoVelocidad);
-            }
-            else
-            {
-                velocidadActual = velocidadBase;
+                if (inputHorizontal < 0) // Tecla A (Acelera ahora)
+                {
+                    spriteRenderer.flipX = true;
+                    velocidadActual = velocidadBase + incrementoVelocidad;
+                }
+                else if (inputHorizontal > 0) // Tecla D (Desacelera ahora)
+                {
+                    spriteRenderer.flipX = false;
+                    velocidadActual = Mathf.Max(1f, velocidadBase - incrementoVelocidad);
+                }
+                else
+                {
+                    velocidadActual = velocidadBase;
+                }
             }
         }
-    }
+
+
+        void OnWall()
+        {
+
+            if (!pegadoAPared)
+            {
+                rb.linearVelocity = new Vector2(velocidadActual * direccion, rb.linearVelocity.y);
+            }
+            else if (rb.linearVelocity.y < 0 && !canJump) // Si está pegado a la pared y cayendo, reducir la caída
+            {
+                rb.linearVelocity = new Vector2(0, -2f); // Controlar la velocidad de caída al estar pegado
+            }
+        }
+    
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -145,6 +178,16 @@ public class PlayerMovement: MonoBehaviour
     public bool IsFacingRight()
     {
         return direccion == 1; // Si la dirección es 1, significa que está mirando a la derecha
+    }
+
+    public void Attack()
+    {
+        attacking = true;
+    }
+
+    public void AttackDisable()
+    {
+        attacking = false;
     }
 
 }

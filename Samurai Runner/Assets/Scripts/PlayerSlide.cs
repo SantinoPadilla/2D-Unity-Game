@@ -10,15 +10,14 @@ public class PlayerSlide : MonoBehaviour
 
     private PlayerMovement playerMovement;
 
-    [SerializeField] private float slideScaleY = 0.5f;
-    [SerializeField] private Color slideColor = Color.red;
     [SerializeField] private float slideDuration = 0.5f;
+    [SerializeField] private Color slideColor = Color.red;
 
     private bool isSliding = false;
 
     void Start()
     {
-        playerMovement = GetComponent<PlayerMovement>(); // Asegúrate de referenciar el script de movimiento
+        playerMovement = GetComponent<PlayerMovement>();
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -44,9 +43,13 @@ public class PlayerSlide : MonoBehaviour
 
     private System.Collections.IEnumerator SlideCoroutine()
     {
+        // Tamaño y offset relativo al collider original
+        Vector2 slideColliderSize = new Vector2(originalColliderSize.x, originalColliderSize.y / 2);
+        Vector2 slideColliderOffset = new Vector2(originalColliderOffset.x, -(originalColliderSize.y - slideColliderSize.y) / 2);
+
         // Configuración del slide
-        boxCollider.size = new Vector2(originalColliderSize.x, slideScaleY);
-        boxCollider.offset = new Vector2(originalColliderOffset.x, -(originalColliderSize.y - slideScaleY) / 2);
+        boxCollider.size = slideColliderSize;
+        boxCollider.offset = slideColliderOffset;
         spriteRenderer.color = slideColor;
 
         yield return new WaitForSeconds(slideDuration);
@@ -60,4 +63,5 @@ public class PlayerSlide : MonoBehaviour
         isSliding = false;
     }
 }
+
 
