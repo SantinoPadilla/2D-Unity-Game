@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      1920x1080 background feudal japan_0: -2819819898691595669
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

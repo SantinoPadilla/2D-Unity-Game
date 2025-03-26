@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e9e17f9dc0bd0f340a774012d7cf7d77
+guid: cd973d34afee13c40bb2f1f5c4a2571a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2178795960740760436
-    second: 1920x1080 background japan_0
+      213: 2888253864093140396
+    second: zorosanji 1280x720_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1920x1080 background japan_0
+      name: zorosanji 1280x720_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2048
-        height: 1401
+        width: 637
+        height: 358
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 47b420ee163ac3e10800000000000000
-      internalID: 2178795960740760436
+      spriteID: ca5cb663693251820800000000000000
+      internalID: 2888253864093140396
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      1920x1080 background japan_0: 2178795960740760436
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
