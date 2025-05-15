@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      zorosanji 1280x720_0: 2888253864093140396
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
