@@ -40,13 +40,27 @@ public class PlayerMovement: MonoBehaviour
     {
         float inputHorizontal = Input.GetAxis("Horizontal") * Time.deltaTime;
 
-
         animator.SetFloat("Movement", inputHorizontal * velocidadActual);
         animator.SetBool("Attacking", attacking);
+
+        // Debug para ver qué tecla activa el ataque
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Debug.Log("Click izquierdo → Espada");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            Debug.Log("Click derecho → Shuriken");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !attacking)
+        {
+            Attack();
+        }
     }
 
-
-        void FixedUpdate()
+    void FixedUpdate()
         {
             OnWall();
             MovimientoPlayer();
@@ -55,15 +69,16 @@ public class PlayerMovement: MonoBehaviour
             MoverCamara();
 
             float inputHorizontal = Input.GetAxis("Horizontal") * Time.deltaTime;
-            animator.SetFloat("Movement", inputHorizontal * velocidadActual);
-            animator.SetBool("Attacking", attacking);
-
-            if (Input.GetKeyDown(KeyCode.Mouse0) && !attacking)
-            {
-                Attack();
-            }
         }
-        void MovimientoPlayer()
+
+    void ActualizarAnimaciones()
+    {
+        float inputHorizontal = Input.GetAxis("Horizontal");
+        animator.SetFloat("Movement", Mathf.Abs(inputHorizontal * velocidadActual));
+        //animator.SetBool("Attacking", attacking);
+    }
+
+    void MovimientoPlayer()
         {
             float inputHorizontal = Input.GetAxis("Horizontal");
 
@@ -182,6 +197,7 @@ public class PlayerMovement: MonoBehaviour
 
     public void Attack()
     {
+       
         attacking = true;
     }
 
