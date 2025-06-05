@@ -16,7 +16,7 @@ public class PlayerShuriken : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1)) // Click derecho
+        if (Input.GetKeyDown(KeyCode.Mouse1) && shurikenAmount > 0 ) // Click derecho
         {
             if (playerMovement.attacking) return; // No lanzar si está atacando
 
@@ -27,6 +27,7 @@ public class PlayerShuriken : MonoBehaviour
 
             // Llamar al método de movimiento en el shuriken
             shuriken.GetComponent<ShurikenBehavior>().Lanzar(directionVector);
+            shurikenAmount -= 1;
         }
     }
 
