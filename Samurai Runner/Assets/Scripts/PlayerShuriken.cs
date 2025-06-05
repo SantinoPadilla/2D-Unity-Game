@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShuriken : MonoBehaviour
@@ -5,7 +7,7 @@ public class PlayerShuriken : MonoBehaviour
     public GameObject shurikenPrefab;  // Prefab del shuriken
     public float throwForce = 10f;     // Fuerza del lanzamiento
     public Transform launchPoint;      // Punto de lanzamiento
-    
+    public int shurikenAmount = 3;
 
     private PlayerMovement playerMovement;
 
@@ -13,18 +15,25 @@ public class PlayerShuriken : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>(); // Obtener el script de movimiento
     }
-
+    public void AddShuriken(int amount)
+    {
+        shurikenAmount += amount;
+        Debug.Log("Shurikens: " + shurikenAmount);
+    }
     void Update()
     {
         // Lanzar el shuriken con el botón derecho del ratón
-        if (Input.GetKeyDown(KeyCode.Mouse1)) // Mouse button 1 = click derecho
+        if (Input.GetKeyDown(KeyCode.Mouse1) && shurikenAmount > 0 ) // Mouse button 1 = click derecho
         {
             ThrowShuriken();
+            shurikenAmount -= 1;    
         }
     }
 
     void ThrowShuriken()
     {
+        
+          
         // Instanciar el Shuriken en el punto de lanzamiento
         GameObject shuriken = Instantiate(shurikenPrefab, launchPoint.position, Quaternion.identity);
 
@@ -37,9 +46,16 @@ public class PlayerShuriken : MonoBehaviour
         // Lanzar el shuriken en la dirección correcta
         rb.linearVelocity = new Vector2(direction * throwForce, 0); // Lanzamiento horizontal
 
-       
-       
+        
+
+        
     }
+
+    
+
+    // Puedes tener otras cosas como lanzar shurikens, moverse, etc.
+
+  
 }
 
 

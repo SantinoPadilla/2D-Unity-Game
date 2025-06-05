@@ -11,6 +11,7 @@ TagManager:
   - Spike
   - Pinche
   - Enemy
+  - Item
   layers:
   - Default
   - TransparentFX

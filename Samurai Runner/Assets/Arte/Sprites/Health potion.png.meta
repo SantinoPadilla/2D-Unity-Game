@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5260481dfea2d9b4ca560113163b539f
+guid: ccb051fe01cce1d43a249963b7fa364b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1291202924252101130
-    second: Background1_0
+      213: 2696053523697678261
+    second: Health potion_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background1_0
+      name: Health potion_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 480
-        height: 320
+        x: 8
+        y: 6
+        width: 22
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f5020f08c9b41ee0800000000000000
-      internalID: -1291202924252101130
+      spriteID: 5b7b07f356e4a6520800000000000000
+      internalID: 2696053523697678261
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Background1_0: -1291202924252101130
+      Health potion_0: 2696053523697678261
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -41,7 +41,10 @@ public class LifeBar : MonoBehaviour
             }
         }
     }
-
+    public void Heal(float amount)
+    {
+        vidaActual += amount;
+    }
     private IEnumerator EfectoInvulnerabilidad()
     {
         esInvulnerable = true;
