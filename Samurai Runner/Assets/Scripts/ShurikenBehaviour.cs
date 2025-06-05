@@ -6,7 +6,7 @@ public class ShurikenBehavior : MonoBehaviour
     public int dañoEnemy = 1;
     public float tiempoVida = 2f;
 
-    private Vector2 direccion;
+    private Vector2 direccion = Vector2.zero;
 
     void Start()
     {
@@ -25,15 +25,14 @@ public class ShurikenBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Colisiona");
-        if (collision.CompareTag("Enemy"))  // Detecta si choca con un enemigo
+        if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<Enemy>().RecibirDañoEnemy(dañoEnemy);  // Llama a un método del enemigo para recibir daño
-            Destroy(gameObject);  // Destruye la shuriken al impactar
+            collision.GetComponent<Enemy>().RecibirDañoEnemy(dañoEnemy);
+            Destroy(gameObject);
         }
-        else if (!collision.CompareTag("Player"))  // Si choca con algo que no sea el player
+        else if (!collision.CompareTag("Player"))
         {
-            Destroy(gameObject);  // Se destruye al impactar
+            Destroy(gameObject);
         }
     }
 }

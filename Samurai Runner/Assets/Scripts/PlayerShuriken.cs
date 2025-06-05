@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerShuriken : MonoBehaviour
 {
     public GameObject shurikenPrefab;  // Prefab del shuriken
-    public float throwForce = 10f;     // Fuerza del lanzamiento
+    public float throwForce = 10f;     // Velocidad del lanzamiento
     public Transform launchPoint;      // Punto de lanzamiento
 
     private PlayerMovement playerMovement;
@@ -15,30 +15,17 @@ public class PlayerShuriken : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Shuriken script activo"); // ⬅️ Este ahora sí se verá
-
-        if (Input.GetKeyDown(KeyCode.Mouse1)) // click derecho
+        if (Input.GetKeyDown(KeyCode.Mouse1)) // Click derecho
         {
-            Debug.Log("Click derecho → intento lanzar shuriken");
-            ThrowShuriken();
+            if (playerMovement.attacking) return; // No lanzar si está atacando
+
+            GameObject shuriken = Instantiate(shurikenPrefab, launchPoint.position, Quaternion.identity);
+
+            float direction = playerMovement.IsFacingRight() ? 1f : -1f;
+            Vector2 directionVector = new Vector2(direction, 0);
+
+            // Llamar al método de movimiento en el shuriken
+            shuriken.GetComponent<ShurikenBehavior>().Lanzar(directionVector);
         }
     }
-
-    void ThrowShuriken()
-    {
-        if (playerMovement.attacking) return; // No lanzar si está atacando con espada
-
-        GameObject shuriken = Instantiate(shurikenPrefab, launchPoint.position, Quaternion.identity);
-
-        float direction = playerMovement.IsFacingRight() ? 1f : -1f;
-
-        Rigidbody2D rb = shuriken.GetComponent<Rigidbody2D>();
-        rb.linearVelocity = new Vector2(direction * throwForce, 0);
-
-        Debug.Log("Shuriken lanzado");
-    }
 }
-
-
-
-

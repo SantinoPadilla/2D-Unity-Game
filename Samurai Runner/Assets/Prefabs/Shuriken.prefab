@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4792814849916704227}
   - component: {fileID: 6231771158738118761}
   - component: {fileID: 7950975911020454126}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Shuriken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 10
-  dano: 1
+  "da\xF1oEnemy": 1
   tiempoVida: 2
 --- !u!60 &7950975911020454126
 PolygonCollider2D:
