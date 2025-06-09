@@ -135,11 +135,12 @@ public class PlayerMovement: MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            canJump = true;
-            pegadoAPared = false;
-        }
+        //if (collision.gameObject.CompareTag("Ground"))
+        //{
+        //    Debug.Log("colisiona con el piso, puede saltar");
+        //    canJump = true;
+        //    pegadoAPared = false;
+        //}
 
         if (collision.gameObject.CompareTag("BounceW"))
         {
@@ -148,20 +149,33 @@ public class PlayerMovement: MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Ground"))
+        {
+            Debug.Log("triggerea con el piso y salta asheee");
+            canJump = true;
+            pegadoAPared = false;
+        }
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("BounceW"))
         {
+            Debug.Log("Te separaste de la pared");
             pegadoAPared = false;
             canBounce = false;
             canJump = false;
         }
     }
+    
 
     void Jump()
     {
         if (pegadoAPared && Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("cambio de direccion");
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             WallBounce(); // Cambia la dirección solo al saltar
             pegadoAPared = false;
@@ -169,6 +183,7 @@ public class PlayerMovement: MonoBehaviour
         }
         else if (canJump && Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("salto normal");
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             canJump = false;
         }
