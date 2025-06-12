@@ -17,6 +17,7 @@ public class PlayerMovement: MonoBehaviour
     private float camSpeed;
     public bool pegadoAPared = false;
     private SpriteRenderer sR;
+    private bool attacking;
 
   public Animator Animator;
 
@@ -40,14 +41,7 @@ public class PlayerMovement: MonoBehaviour
         MovimientoPlayer();
         Jump();
         MoverCamara();
-        if (!IsFacingRight())
-        {
-            sR.flipX = true;
-        }
-        if (IsFacingRight())
-        {
-            sR.flipX = false;
-        }
+
         AnimatorControl();
     }
 
@@ -67,6 +61,16 @@ public class PlayerMovement: MonoBehaviour
     {
         Animator.SetBool("CanJump", canJump);
         Animator.SetFloat("SpeedY", rb.linearVelocity.y);
+        Animator.SetBool("Attacking", attacking);
+
+        if (!IsFacingRight())
+        {
+            sR.flipX = true;
+        }
+        if (IsFacingRight())
+        {
+            sR.flipX = false;
+        }
     }
 
     void MovimientoPlayer()
@@ -103,6 +107,14 @@ public class PlayerMovement: MonoBehaviour
                 velocidadActual = velocidadBase;
             }
         }
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !attacking)
+        {
+            Attack();
+           
+        }
+       
+        
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -167,6 +179,17 @@ public class PlayerMovement: MonoBehaviour
     {
         return direccion == 1; // Si la dirección es 1, significa que está mirando a la derecha
     }
+
+    public void Attack()
+    {
+
+        attacking = true;
+    }
+    public void DisableAttack()
+    {
+        attacking = false;  
+    }
+
 
 }
 

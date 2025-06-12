@@ -11,6 +11,7 @@ TagManager:
   - Spike
   - Pinche
   - Enemy
+  - Sword
   layers:
   - Default
   - TransparentFX

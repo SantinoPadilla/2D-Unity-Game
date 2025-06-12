@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
     public int daño = 1;
+    public int vida = 3;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,13 +18,19 @@ public class Enemy : MonoBehaviour
                 Debug.Log("¡Player recibió daño del enemigo!");
             }
         }
+        if (collision.CompareTag("Sword"))
+        {
+            RecibirDañoEnemy(1);
+            Debug.Log("Enemigo cortado");
+        }
+
+
     }
 
-    public int vida = 3;
-
-    public void RecibirDañoEnemy(int cantidadDano)
+  public void RecibirDañoEnemy(int cantidadDano)
     {
         vida -= cantidadDano;
+
 
         if (vida <= 0)
         {
@@ -29,3 +38,4 @@ public class Enemy : MonoBehaviour
         }
     }
 }
+
