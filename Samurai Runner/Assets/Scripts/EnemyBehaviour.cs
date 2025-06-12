@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
         }
         if (collision.CompareTag("Sword"))
         {
-            RecibirDañoEnemy(1);
+            RecibirDañoEnemy(3);
             Debug.Log("Enemigo cortado");
         }
 
