@@ -6,15 +6,17 @@ public class PlayerSlide : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
-    private Color originalColor;
+   
 
     private PlayerMovement playerMovement;
 
     [SerializeField] private float slideScaleY = 0.5f;
-    [SerializeField] private Color slideColor = Color.red;
+   
     [SerializeField] private float slideDuration = 0.5f;
 
     private bool isSliding = false;
+
+     public Animator animator;
 
     void Start()
     {
@@ -24,12 +26,13 @@ public class PlayerSlide : MonoBehaviour
 
         originalColliderSize = capsuleCollider.size;
         originalColliderOffset = capsuleCollider.offset;
-        originalColor = spriteRenderer.color;
+     
     }
 
     void Update()
     {
         HandleSlide();
+        animator.SetBool("IsSliding", isSliding);   
     }
 
     void HandleSlide()
@@ -47,14 +50,14 @@ public class PlayerSlide : MonoBehaviour
         // Configuración del slide
         capsuleCollider.size = new Vector2(originalColliderSize.x, slideScaleY);
         capsuleCollider.offset = new Vector2(originalColliderOffset.x, -(originalColliderSize.y - slideScaleY) / 2);
-        spriteRenderer.color = slideColor;
+       
 
         yield return new WaitForSeconds(slideDuration);
 
         // Restauración tras el slide
         capsuleCollider.size = originalColliderSize;
         capsuleCollider.offset = originalColliderOffset;
-        spriteRenderer.color = originalColor;
+      
 
         playerMovement.canJump = true;  // Restablece la capacidad de salto después del deslizamiento
         isSliding = false;

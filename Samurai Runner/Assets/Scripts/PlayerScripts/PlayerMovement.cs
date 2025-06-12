@@ -16,9 +16,13 @@ public class PlayerMovement: MonoBehaviour
     public Camera mainCamera;
     private float camSpeed;
     public bool pegadoAPared = false;
+    private SpriteRenderer sR;
+
+  public Animator Animator;
 
     void Start()
     {
+        sR = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         velocidadActual = velocidadBase;
@@ -28,6 +32,7 @@ public class PlayerMovement: MonoBehaviour
         {
             mainCamera = Camera.main;
         }
+        
     }
 
     void Update()
@@ -35,6 +40,15 @@ public class PlayerMovement: MonoBehaviour
         MovimientoPlayer();
         Jump();
         MoverCamara();
+        if (!IsFacingRight())
+        {
+            sR.flipX = true;
+        }
+        if (IsFacingRight())
+        {
+            sR.flipX = false;
+        }
+        AnimatorControl();
     }
 
     void FixedUpdate()
@@ -47,6 +61,12 @@ public class PlayerMovement: MonoBehaviour
         {
             rb.linearVelocity = new Vector2(0, -2f); // Controlar la velocidad de caída al estar pegado
         }
+    }
+
+    private void AnimatorControl()
+    {
+        Animator.SetBool("CanJump", canJump);
+        Animator.SetFloat("SpeedY", rb.linearVelocity.y);
     }
 
     void MovimientoPlayer()
@@ -97,6 +117,7 @@ public class PlayerMovement: MonoBehaviour
         {
             pegadoAPared = true;
             canBounce = true;
+            canJump = true;
         }
     }
 
