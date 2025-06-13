@@ -18,7 +18,7 @@ public class LifeBar : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-
+    
     void Update()
     {
         lifeBar.fillAmount = vidaActual / vidaMaxima;
@@ -27,6 +27,7 @@ public class LifeBar : MonoBehaviour
     {
         if (!esInvulnerable)
         {
+            
             vidaActual -= daño;
             Debug.Log("Vida actual: " + vidaActual);
 

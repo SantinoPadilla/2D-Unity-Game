@@ -75,7 +75,7 @@ public class PlayerMovement: MonoBehaviour
             sR.flipX = false;
         }
 
-
+       
     }
 
     void MovimientoPlayer()
