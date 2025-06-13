@@ -12,6 +12,7 @@ public class PlayerMovement: MonoBehaviour
     public bool canBounce = false;
     private int direccion = 1; // 1 = derecha, -1 = izquierda
     private bool teclasRotadas = false;
+    private bool aPress;
 
     public Camera mainCamera;
     private float camSpeed;
@@ -62,6 +63,8 @@ public class PlayerMovement: MonoBehaviour
         Animator.SetBool("CanJump", canJump);
         Animator.SetFloat("SpeedY", rb.linearVelocity.y);
         Animator.SetBool("Attacking", attacking);
+        Animator.SetBool("PegadoAPared", pegadoAPared);
+        Animator.SetBool("APress", aPress);
 
         if (!IsFacingRight())
         {
@@ -71,6 +74,8 @@ public class PlayerMovement: MonoBehaviour
         {
             sR.flipX = false;
         }
+
+
     }
 
     void MovimientoPlayer()
@@ -82,10 +87,14 @@ public class PlayerMovement: MonoBehaviour
             if (inputHorizontal < 0) // Tecla A (Desacelera)
             {
                 velocidadActual = Mathf.Max(1f, velocidadBase - incrementoVelocidad);
+               
+                aPress = true;
+
             }
             else if (inputHorizontal > 0) // Tecla D (Acelera)
             {
                 velocidadActual = velocidadBase + incrementoVelocidad;
+                aPress = false;
             }
             else
             {
@@ -97,10 +106,13 @@ public class PlayerMovement: MonoBehaviour
             if (inputHorizontal < 0) // Tecla A (Acelera ahora)
             {
                 velocidadActual = velocidadBase + incrementoVelocidad;
+              
+                aPress = true;
             }
             else if (inputHorizontal > 0) // Tecla D (Desacelera ahora)
             {
                 velocidadActual = Mathf.Max(1f, velocidadBase - incrementoVelocidad);
+                aPress = false;
             }
             else
             {
