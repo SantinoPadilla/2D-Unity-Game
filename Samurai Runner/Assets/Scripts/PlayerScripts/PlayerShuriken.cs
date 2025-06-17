@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerShuriken : MonoBehaviour
@@ -21,6 +22,7 @@ public class PlayerShuriken : MonoBehaviour
         {
             ThrowShuriken();
         }
+        ActualizarTexto();
     }
 
     void ThrowShuriken()
@@ -48,6 +50,13 @@ public class PlayerShuriken : MonoBehaviour
     {
         shurikenAmount += amount;
         Debug.Log("shuriken: " + shurikenAmount);
+    }
+
+    [SerializeField] private TextMeshProUGUI textCantitadShurikens;
+
+    private void ActualizarTexto()
+    {
+        textCantitadShurikens.text = shurikenAmount.ToString();
     }
 }
 

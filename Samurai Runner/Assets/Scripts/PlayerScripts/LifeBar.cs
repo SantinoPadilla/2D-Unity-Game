@@ -5,8 +5,8 @@ using System.Collections;
 
 public class LifeBar : MonoBehaviour
 {
-    public Image lifeBar;
 
+    [SerializeField] private CorazonUI[] corazones;
     public float vidaMaxima;
     public float vidaActual;
 
@@ -16,13 +16,29 @@ public class LifeBar : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+    }
+    private void Update()
+    {
+        ActivarCorazones(vidaActual);
     }
 
-    
-    void Update()
+
+    private void ActivarCorazones(float vidaActual)
     {
-        lifeBar.fillAmount = vidaActual / vidaMaxima;
+        for (int i = 0; i < corazones.Length; i++)
+        {
+            if (i < vidaActual)
+            {
+                corazones[i].ActivarCorazon();
+            }
+            else
+            {
+                corazones[i].DesactivarCorazon();
+            }
+        }
     }
+
     public void RecibirDaño(int daño)
     {
         if (!esInvulnerable)
@@ -45,7 +61,16 @@ public class LifeBar : MonoBehaviour
 
     public void Heal(float amount)
     {
-        vidaActual += amount;
+        
+        if (vidaActual == vidaMaxima)
+        {
+           amount = 0;
+        }
+        else
+        {
+            vidaActual += amount;
+        }
+        
     }
     private IEnumerator EfectoInvulnerabilidad()
     {
