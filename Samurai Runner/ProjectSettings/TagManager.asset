@@ -12,6 +12,7 @@ TagManager:
   - Pinche
   - Enemy
   - Sword
+  - Jefe
   layers:
   - Default
   - TransparentFX

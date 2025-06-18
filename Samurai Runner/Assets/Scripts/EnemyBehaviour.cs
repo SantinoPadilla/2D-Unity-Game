@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    public int daño = 1;
+    public int daÃ±o = 1;
     public int vida = 3;
 
 
@@ -14,20 +14,20 @@ public class Enemy : MonoBehaviour
             LifeBar player = collision.GetComponent<LifeBar>();
             if (player != null)
             {
-                player.RecibirDaño(daño);
-                Debug.Log("¡Player recibió daño del enemigo!");
+                player.RecibirDaÃ±o(daÃ±o);
+                Debug.Log("Player recibio daÃ±o del enemigo!");
             }
         }
         if (collision.CompareTag("Sword"))
         {
-            RecibirDañoEnemy(3);
+            RecibirDaÃ±oEnemy(3);
             Debug.Log("Enemigo cortado");
         }
 
 
     }
 
-  public void RecibirDañoEnemy(int cantidadDano)
+  public void RecibirDaÃ±oEnemy(int cantidadDano)
     {
         vida -= cantidadDano;
 
