@@ -39,17 +39,17 @@ public class LifeBar : MonoBehaviour
         }
     }
 
-    public void RecibirDaño(int daño)
+    public void RecibirDaÃ±o(int daÃ±o)
     {
         if (!esInvulnerable)
         {
             
-            vidaActual -= daño;
+            vidaActual -= daÃ±o;
             Debug.Log("Vida actual: " + vidaActual);
 
             if (vidaActual <= 0)
             {
-                Debug.Log("¡Jugador muerto!");
+                Debug.Log("ï¿½Jugador muerto!");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             else
