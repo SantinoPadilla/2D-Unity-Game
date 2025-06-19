@@ -151,7 +151,7 @@ public class PlayerMovement: MonoBehaviour
         {
             
 
-            lifeBar.RecibirDaño(1);
+            lifeBar.RecibirDaño(3);
 
            
         }

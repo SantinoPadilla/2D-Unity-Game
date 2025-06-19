@@ -12,7 +12,7 @@ public class Jefe : MonoBehaviour
     {
         movimientoJefe = GetComponent<MovimientoJefe>();
     }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Si toca al jugador, le hace daño
@@ -38,15 +38,8 @@ public class Jefe : MonoBehaviour
     {
         vida -= cantidad;
 
-        // Knockback
-        if (movimientoJefe != null)
-        {
-            movimientoJefe.RecibirDanio(); // Usa el knockback del script MovimientoJefe
-        }
-
         if (vida <= 0)
         {
-            Debug.Log("Jefe derrotado");
             Destroy(gameObject);
         }
     }
