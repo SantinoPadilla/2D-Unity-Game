@@ -57,7 +57,7 @@ public class PlayerShuriken : MonoBehaviour
     {
         audioSource.PlayOneShot(reloadAudioClip);
         shurikenAmount += amount;
-        Debug.Log("shuriken: " + shurikenAmount);
+        
     }
 
     [SerializeField] private TextMeshProUGUI textCantitadShurikens;

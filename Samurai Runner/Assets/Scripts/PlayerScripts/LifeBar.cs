@@ -50,7 +50,7 @@ public class LifeBar : MonoBehaviour
         {
             audioSource.PlayOneShot(ouchAudioClip);
             vidaActual -= daño;
-            Debug.Log("Vida actual: " + vidaActual);
+            
 
             if (vidaActual <= 0)
             {

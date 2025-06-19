@@ -15,13 +15,12 @@ public class Enemy : MonoBehaviour
             if (player != null)
             {
                 player.RecibirDaño(daño);
-                Debug.Log("Player recibio daño del enemigo!");
             }
         }
         if (collision.CompareTag("Sword"))
         {
             RecibirDañoEnemy(3);
-            Debug.Log("Enemigo cortado");
+            
         }
 
 

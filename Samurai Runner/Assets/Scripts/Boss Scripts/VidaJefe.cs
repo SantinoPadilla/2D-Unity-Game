@@ -17,7 +17,7 @@ public class VidaJefe : MonoBehaviour
     public void RecibirDaño()
     {
         vidaActual--;
-        Debug.Log("Jefe recibió daño. Vida restante: " + vidaActual);
+        
 
         movimientoJefe.RecibirDanio(); 
         // Knockback
@@ -30,7 +30,7 @@ public class VidaJefe : MonoBehaviour
 
     void Morir()
     {
-        Debug.Log("Jefe derrotado");
+        
         Destroy(gameObject);
     }
 }
