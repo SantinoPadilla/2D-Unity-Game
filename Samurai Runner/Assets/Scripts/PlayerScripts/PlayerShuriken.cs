@@ -10,6 +10,12 @@ public class PlayerShuriken : MonoBehaviour
 
     private PlayerMovement playerMovement;
 
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] public AudioClip throwAudioClip;
+    [SerializeField] public AudioClip reloadAudioClip;
+
+
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>(); // Obtener el script de movimiento
@@ -29,6 +35,7 @@ public class PlayerShuriken : MonoBehaviour
     {
         if (shurikenAmount > 0)
         {
+            audioSource.PlayOneShot(throwAudioClip);
             // Instanciar el Shuriken en el punto de lanzamiento
             GameObject shuriken = Instantiate(shurikenPrefab, launchPoint.position, Quaternion.identity);
 
@@ -48,6 +55,7 @@ public class PlayerShuriken : MonoBehaviour
 
     public void AddShuriken(int amount)
     {
+        audioSource.PlayOneShot(reloadAudioClip);
         shurikenAmount += amount;
         Debug.Log("shuriken: " + shurikenAmount);
     }

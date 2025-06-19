@@ -138,3 +138,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 3
+  audioSource: {fileID: 0}
+  healAudioClip: {fileID: 8300000, guid: 4a1174932be2f504baffe0d78ff1675a, type: 3}

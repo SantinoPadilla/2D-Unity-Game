@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - Sword
   - Jefe
+  - Limits
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Roof
   - techoLayer
   - groundLayer
-  - 
+  - Limits
   - 
   - 
   - 

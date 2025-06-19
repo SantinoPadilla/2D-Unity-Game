@@ -19,6 +19,7 @@ public class PlayerMovement: MonoBehaviour
     public bool pegadoAPared = false;
     private SpriteRenderer sR;
     private bool attacking;
+    LifeBar lifeBar;
 
   public Animator Animator;
 
@@ -26,6 +27,7 @@ public class PlayerMovement: MonoBehaviour
     {
         sR = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        lifeBar = GetComponent<LifeBar>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         velocidadActual = velocidadBase;
         camSpeed = velocidadBase;
@@ -129,6 +131,8 @@ public class PlayerMovement: MonoBehaviour
 
     }
 
+  
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -143,6 +147,15 @@ public class PlayerMovement: MonoBehaviour
             canBounce = true;
             canJump = true;
         }
+        if (collision.gameObject.CompareTag("Limits"))
+        {
+            
+
+            lifeBar.RecibirDaño(1);
+
+           
+        }
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -154,6 +167,7 @@ public class PlayerMovement: MonoBehaviour
             canJump = false;
         }
     }
+
 
     void Jump()
     {
@@ -202,7 +216,7 @@ public class PlayerMovement: MonoBehaviour
         attacking = false;  
     }
 
-
+    
 }
 
 

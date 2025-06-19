@@ -3,16 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class VoidZone : MonoBehaviour
 {
+    public GameObject gameOverCanvas;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            RestartLevel();
+            Time.timeScale = 0f;
+
+            gameOverCanvas.SetActive(true);
         }
     }
 
-    private void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reinicia el nivel actual
-    }
+ 
 }

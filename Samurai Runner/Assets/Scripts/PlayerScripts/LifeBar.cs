@@ -13,6 +13,10 @@ public class LifeBar : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool esInvulnerable = false;
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] public AudioClip ouchAudioClip;
+    [SerializeField] public AudioClip healAudioClip;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -39,18 +43,20 @@ public class LifeBar : MonoBehaviour
         }
     }
 
+    public GameObject gameOverCanvas;
     public void RecibirDaño(int daño)
     {
         if (!esInvulnerable)
         {
-            
+            audioSource.PlayOneShot(ouchAudioClip);
             vidaActual -= daño;
             Debug.Log("Vida actual: " + vidaActual);
 
             if (vidaActual <= 0)
             {
-                Debug.Log("�Jugador muerto!");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                Time.timeScale = 0f;
+
+                gameOverCanvas.SetActive(true);
             }
             else
             {
@@ -61,7 +67,7 @@ public class LifeBar : MonoBehaviour
 
     public void Heal(float amount)
     {
-        
+        audioSource.PlayOneShot(healAudioClip);
         if (vidaActual == vidaMaxima)
         {
            amount = 0;
